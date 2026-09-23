@@ -1,0 +1,585 @@
+/* ============================================================
+   BOBARENA · MeuAppWeb · style.css v2.0
+   Design System Dark Cyberpunk & Gold Accent
+   ============================================================ */
+
+/* Variables globais para consistencia visual */
+:root {
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #111119;
+  --bg-tertiary: #161622;
+  --accent-gold: #d4af37;
+  --accent-cyan: #67e8f9;
+  --accent-purple: #a78bfa;
+  --text-primary: #f3f4f6;
+  --text-secondary: #9ca3af;
+  --text-muted: #4b5563;
+  --error-color: #ef4444;
+  --success-color: #10b981;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: system-ui, -apple-system, sans-serif;
+  --transition: all 0.2s ease-in-out;
+}
+
+/* Reset e base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar cyberpunk */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent-gold);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-cyan);
+}
+
+/* ============================================================
+   HEADER VISUAL
+   ============================================================ */
+.ba-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background-color: rgba(17, 17, 25, 0.95);
+  border-bottom: 2px solid var(--accent-gold);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+}
+
+.ba-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ba-header__icon {
+  color: var(--accent-gold);
+  font-size: 18px;
+  filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.4));
+}
+
+.ba-header__title {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, var(--accent-gold), #fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.ba-header__badge {
+  background: rgba(212, 175, 55, 0.15);
+  border: 1px solid var(--accent-gold);
+  color: var(--accent-gold);
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+}
+
+.ba-header__nav {
+  display: flex;
+  gap: 8px;
+}
+
+.ba-nav__link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 13px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition);
+}
+
+.ba-nav__link:hover, .ba-nav__link--active {
+  color: var(--text-primary);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.ba-nav__link--active {
+  border-bottom: 2px solid var(--accent-gold);
+  border-radius: 6px 6px 0 0;
+}
+
+.ba-header__status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+}
+
+.ba-status__dot {
+  font-size: 8px;
+}
+.ba-status__dot--online {
+  color: var(--success-color);
+  filter: drop-shadow(0 0 4px var(--success-color));
+}
+
+/* ============================================================
+   MAIN LAYOUT & GRID SYSTEM
+   ============================================================ */
+.ba-main {
+  margin-top: 64px;
+  padding: 24px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 768px) {
+  .ba-main {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ba-card--wide {
+    grid-column: span 2;
+  }
+}
+
+/* ============================================================
+   CARD COMPONENT
+   ============================================================ */
+.ba-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: var(--transition);
+}
+
+.ba-card:hover {
+  border-color: rgba(212, 175, 55, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.ba-card--highlight {
+  border-color: rgba(212, 175, 55, 0.15);
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(212, 175, 55, 0.02) 100%);
+}
+
+.ba-card__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 12px;
+}
+
+.ba-card__icon {
+  color: var(--accent-gold);
+  font-size: 16px;
+}
+.ba-card__icon--cyan {
+  color: var(--accent-cyan);
+}
+.ba-card__icon--purple {
+  color: var(--accent-purple);
+}
+
+.ba-card__title {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+}
+
+.ba-card__badge {
+  margin-left: auto;
+  background: rgba(103, 232, 249, 0.1);
+  border: 1px solid var(--accent-cyan);
+  color: var(--accent-cyan);
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+}
+
+/* ============================================================
+   METRICS COMPONENT
+   ============================================================ */
+.ba-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.ba-metric {
+  background-color: var(--bg-tertiary);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: 6px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.ba-metric__value {
+  font-family: var(--font-mono);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent-gold);
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+}
+
+.ba-metric__label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ============================================================
+   INPUTS & CONTROLLERS
+   ============================================================ */
+.ba-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ba-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ba-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.ba-input, .ba-textarea {
+  width: 100%;
+  background-color: var(--bg-tertiary);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  padding: 10px 14px;
+  transition: var(--transition);
+}
+
+.ba-input:focus, .ba-textarea:focus {
+  outline: none;
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.15);
+}
+
+.ba-textarea {
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.ba-input__counter {
+  position: absolute;
+  right: 12px;
+  font-size: 10px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  pointer-events: none;
+}
+
+.ba-input__error {
+  font-size: 11px;
+  color: var(--error-color);
+  display: none;
+  font-family: var(--font-mono);
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.ba-btn-group {
+  display: flex;
+  gap: 10px;
+}
+
+.ba-btn {
+  background: none;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: var(--transition);
+}
+
+.ba-btn--primary {
+  background-color: var(--accent-gold);
+  color: #000;
+}
+.ba-btn--primary:hover {
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.ba-btn--secondary {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+}
+.ba-btn--secondary:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.ba-btn--danger {
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid var(--error-color);
+  color: var(--error-color);
+}
+.ba-btn--danger:hover {
+  background-color: var(--error-color);
+  color: #fff;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+}
+
+.ba-btn--outline {
+  background: none;
+  border: 1px solid var(--accent-gold);
+  color: var(--accent-gold);
+}
+.ba-btn--outline:hover {
+  background-color: rgba(212, 175, 55, 0.05);
+}
+
+/* ============================================================
+   TERMINAL COMPONENT
+   ============================================================ */
+.ba-terminal {
+  background-color: #050508;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 6px;
+  padding: 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  min-height: 120px;
+  max-height: 250px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ba-terminal__line {
+  display: flex;
+  gap: 8px;
+  line-height: 1.6;
+}
+
+.ba-terminal__prompt {
+  color: var(--accent-gold);
+  user-select: none;
+}
+
+.ba-terminal__text {
+  color: rgba(255, 255, 255, 0.85);
+  word-break: break-all;
+}
+.ba-terminal__text--error {
+  color: var(--error-color);
+}
+.ba-terminal__text--success {
+  color: var(--success-color);
+}
+
+/* ============================================================
+   MODULES GRID
+   ============================================================ */
+.ba-module-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.ba-module-card {
+  background-color: var(--bg-tertiary);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: 6px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: var(--transition);
+}
+
+.ba-module-card:hover {
+  border-color: rgba(103, 232, 249, 0.15);
+}
+
+.ba-module-card__name {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.ba-module-card__status {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ============================================================
+   TOOLTIPS (Puro CSS)
+   ============================================================ */
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%) scale(0.9);
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--accent-gold);
+  color: var(--text-primary);
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.15s ease-in-out;
+  z-index: 1001;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+[data-tooltip]:hover::before {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+/* ============================================================
+   TOAST SYSTEM
+   ============================================================ */
+.ba-toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 2000;
+}
+
+.ba-toast {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--accent-gold);
+  border-left: 4px solid var(--accent-gold);
+  border-radius: 6px;
+  padding: 12px 16px;
+  min-width: 280px;
+  max-width: 400px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-primary);
+  font-size: 13px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  animation: baToastIn 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.ba-toast--success {
+  border-color: var(--success-color);
+  border-left-color: var(--success-color);
+}
+.ba-toast--error {
+  border-color: var(--error-color);
+  border-left-color: var(--error-color);
+}
+
+.ba-toast__icon {
+  font-size: 14px;
+}
+.ba-toast--success .ba-toast__icon { color: var(--success-color); }
+.ba-toast--error .ba-toast__icon { color: var(--error-color); }
+
+.ba-toast__close {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+.ba-toast__close:hover {
+  color: var(--text-primary);
+}
+
+@keyframes baToastIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.ba-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  margin-top: 40px;
+}
